@@ -31,6 +31,15 @@ then
     exit 1
 fi
 
+hash spritemapper 2>&- || {
+    echo >&2 "Spritemaper is not installed in your machine.\nIt can be installed from https://github.com/yostudios/Spritemapper.\nAborting."
+    exit 1
+}
+hash trimage 2>&- || {
+    echo >&2 "trimage is not installed on your machine.\nSee http://trimage.org/ for the installation procedure.\nAborting."
+    exit 1
+}
+
 cd $1
 path=${PWD}
 fname=${PWD##*/}
