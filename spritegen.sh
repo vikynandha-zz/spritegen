@@ -13,9 +13,9 @@ generate_src_css()
     do
         filebasename=$(basename $file .png)
         wd=$(pwd)
-        dimensions=$(identify $file | sed -n 's/\(^.*\)\ \([0-9]*\)x\([0-9]*\)\ \(.*$\)/\2 \3/p')
+        dimensions=$(file $file | grep -o '\([0-9]\+\)\ x\ \([0-9]\+\)')
         width=$(echo "${dimensions}" | awk '{print $1}')
-        height=$(echo "${dimensions}" | awk '{print $2}')
+        height=$(echo "${dimensions}" | awk '{print $3}')
         echo '.sp-'$filebasename' {'
         echo '  background: url("'$wd'/'$file'") no-repeat;'
         echo '  width: '$width'px;'
